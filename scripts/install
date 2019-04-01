@@ -8,6 +8,8 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
+source _ynh_fpm_config
+source _getopts
 
 #=================================================
 # MANAGE SCRIPT FAILURE
@@ -67,6 +69,13 @@ ynh_app_setting_set $app database $database
 # INSTALL DEPENDENCIES
 #=================================================
 ynh_install_app_dependencies php-mbstring php5-cli 'php5-imagick|php-imagick' php5-gd php5-mcrypt 'php-xml|base-files(<<9.0)'
+
+#=================================================
+# PHP-FPM 7.1 CONFIGURATION
+#=================================================
+
+# Create a dedicated php-fpm7.1 config
+ynh_install_php --phpversion=7.1
 
 #=================================================
 # CREATE A MYSQL DATABASE
@@ -134,8 +143,7 @@ ynh_system_user_create $app
 #=================================================
 
 
-# Create a dedicated php-fpm config
-ynh_add_fpm_config
+ynh_add_fpm7.1_config
 
 # Set right permissions for curl install
 chown -R $app: $final_path
