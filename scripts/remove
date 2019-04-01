@@ -8,6 +8,9 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
+source _ynh_fpm_config
+source _getopts
+source _ynh_add_secure_repos
 
 #=================================================
 # LOAD SETTINGS
