@@ -265,7 +265,7 @@ EOF
     ynh_package_install_from_equivs /tmp/${dep_app}-ynh-deps.control \
         || ynh_die --message="Unable to install dependencies"	# Install the fake package and its dependencies
     rm /tmp/${dep_app}-ynh-deps.control
-    ynh_app_setting_set --app=$app --key=apt_dependencies --value="$dependencies"
+    ynh_app_setting_set $app apt_dependencies "$dependencies"
 }
 
 ynh_add_app_dependencies () {
